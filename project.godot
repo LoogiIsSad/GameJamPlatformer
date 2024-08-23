@@ -11,7 +11,9 @@ config_version=5
 [application]
 
 config/name="RockGame"
+run/main_scene="res://scenes/title/title.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
+boot_splash/show_image=false
 config/icon="res://icon.svg"
 
 [rendering]
