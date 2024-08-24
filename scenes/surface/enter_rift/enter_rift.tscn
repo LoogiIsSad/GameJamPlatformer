@@ -70,10 +70,10 @@ script = ExtResource("1_j1aic")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 modulate = Color(1, 1, 1, 0)
-offset_left = -419.0
-offset_top = -348.0
-offset_right = 469.0
-offset_bottom = 473.0
+offset_left = -1195.0
+offset_top = -1064.0
+offset_right = 1124.0
+offset_bottom = 1138.0
 
 [node name="Clock" type="Sprite2D" parent="."]
 modulate = Color(1, 1, 1, 0.596078)
