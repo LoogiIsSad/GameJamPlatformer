@@ -1,0 +1,57 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6ybelmam5n62"]
+
+[ext_resource type="Script" path="res://scenes/surface/surface.gd" id="1_bku6s"]
+[ext_resource type="Texture2D" uid="uid://ytqcnxima25t" path="res://scenes/surface/breath-taking-moon-and-stars-jezvodmy8ht0392c.webp" id="1_euymk"]
+[ext_resource type="PackedScene" uid="uid://d2tbp8gvngbpo" path="res://scenes/player/Player.tscn" id="2_6glsi"]
+[ext_resource type="PackedScene" uid="uid://bk2px1jpw5lap" path="res://scenes/rift/Rift.tscn" id="3_obnjm"]
+
+[sub_resource type="PlaceholderTexture2D" id="PlaceholderTexture2D_22gxi"]
+
+[node name="Surface" type="Node2D"]
+script = ExtResource("1_bku6s")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(182, 349)
+scale = Vector2(1.246, 1.246)
+texture = ExtResource("1_euymk")
+
+[node name="Ground" type="Node2D" parent="."]
+
+[node name="1" type="TextureRect" parent="Ground"]
+modulate = Color(0.4214, 0.86, 0.4945, 1)
+offset_left = 87.0
+offset_top = 416.0
+offset_right = 561.0
+offset_bottom = 434.0
+texture = SubResource("PlaceholderTexture2D_22gxi")
+
+[node name="2" type="TextureRect" parent="Ground"]
+modulate = Color(0.4214, 0.86, 0.4945, 1)
+offset_left = 311.0
+offset_top = 576.0
+offset_right = 598.0
+offset_bottom = 592.0
+rotation = -0.570969
+texture = SubResource("PlaceholderTexture2D_22gxi")
+
+[node name="3" type="TextureRect" parent="Ground"]
+modulate = Color(0.4214, 0.86, 0.4945, 1)
+offset_left = 323.0
+offset_top = 586.0
+offset_right = 603.0
+offset_bottom = 602.0
+rotation = -2.56927
+texture = SubResource("PlaceholderTexture2D_22gxi")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Ground"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Ground/StaticBody2D"]
+polygon = PackedVector2Array(85, 416, 265, 415, 317, 520, 383, 416, 560, 415, 559, 437, 321, 588, 86, 434)
+
+[node name="Player" parent="." instance=ExtResource("2_6glsi")]
+position = Vector2(448, 183)
+
+[node name="Rift" parent="." instance=ExtResource("3_obnjm")]
+position = Vector2(323, 412)
+
+[connection signal="player_entered_rift" from="Rift" to="." method="_on_rift_player_entered_rift"]
