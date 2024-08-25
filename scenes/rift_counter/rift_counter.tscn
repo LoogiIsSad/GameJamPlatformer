@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://dqf0yfomvdub2"]
+
+[ext_resource type="Texture2D" uid="uid://bj31x2e0y2ax" path="res://scenes/rift_shard/rift_shard.png" id="1_4je0m"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nfs2h"]
+font_size = 30
+
+[node name="RiftCounter" type="CanvasLayer"]
+
+[node name="Label" type="Label" parent="."]
+offset_left = 45.0
+offset_top = 584.0
+offset_right = 309.0
+offset_bottom = 626.0
+text = "0/0"
+label_settings = SubResource("LabelSettings_nfs2h")
+
+[node name="RiftShard" type="Sprite2D" parent="."]
+position = Vector2(29, 605)
+texture = ExtResource("1_4je0m")

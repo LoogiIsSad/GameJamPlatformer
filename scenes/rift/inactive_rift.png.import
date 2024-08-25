@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gwt0clgxd8y1"
-path="res://.godot/imported/clock_base.png-04f6e01e9135c8a8a66493f6f575abbb.ctex"
+uid="uid://dyk6sy8axdlnc"
+path="res://.godot/imported/inactive_rift.png-54647494e1560430ac6320624426ec9f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/surface/enter_rift/clock_base.png"
-dest_files=["res://.godot/imported/clock_base.png-04f6e01e9135c8a8a66493f6f575abbb.ctex"]
+source_file="res://scenes/rift/inactive_rift.png"
+dest_files=["res://.godot/imported/inactive_rift.png-54647494e1560430ac6320624426ec9f.ctex"]
 
 [params]
 

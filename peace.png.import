@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jx51oe2kywgy"
-path="res://.godot/imported/milky-way-starry-sky-night-sky-star-956981.jpeg-496c472e36c9c811c26640c4a84b162c.ctex"
+uid="uid://cve05b2857k1u"
+path="res://.godot/imported/peace.png-3ad115324d736bb44dd360b311da2ca5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://scenes/levels/tutorial_rift/milky-way-starry-sky-night-sky-star-956981.jpeg"
-dest_files=["res://.godot/imported/milky-way-starry-sky-night-sky-star-956981.jpeg-496c472e36c9c811c26640c4a84b162c.ctex"]
+source_file="res://peace.png"
+dest_files=["res://.godot/imported/peace.png-3ad115324d736bb44dd360b311da2ca5.ctex"]
 
 [params]
 

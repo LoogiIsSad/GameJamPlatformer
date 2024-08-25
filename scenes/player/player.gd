@@ -9,50 +9,84 @@ var air_dashes = 1
 var max_air_dashes = 1
 var dash_active = false
 var dash_off_cooldown = true
-var rewind = false
+var rewinding = false
 var recording = false
 var rewind_positions = []
-var death_limit = 100000
+var ground_positions = []
+var death_limit = 800
+var spawning = true
 
 func _ready():
-	pass # Replace with function body.
+	$CanvasLayer.visible = true
+	var tween = create_tween()
+	tween.tween_property($CanvasLayer/CanvasModulate, "color:a", 0.0, 2.0)
+	tween.tween_callback(func():
+		spawning = false
+		$CanvasLayer.visible = false
+		$CanvasLayer/ColorRect.visible = false
+		$CanvasLayer/CanvasModulate.color.a = 1.0
+		$SpriteCanvasLayer/SprPause.visible = false
+		$SpriteCanvasLayer/SprPlay.visible = true
+		$SpriteCanvasLayer/Timer.start())
 
 
 var record_count = 0
 var was_on_floor = true
 func _physics_process(delta):
-	if was_on_floor and !is_on_floor():
-		recording = true
+	if spawning == true: return
 	
+	if was_on_floor and !rewinding and (!is_on_floor() or get_floor_angle() != 0):
+		recording = true
+		rewind_positions = ground_positions
+		was_on_floor = false
 	if recording:
 		rewind_positions.append(position)
 	
-	if position.y > death_limit and !rewind:
-		rewind = true
-		recording = false
-		record_count = rewind_positions.size() - 1
+	if position.y > death_limit and !rewinding: rewind("start")
+		
 	
-	if rewind:
-		print("rewinding")
+	if rewinding and !rewind_positions.is_empty():
 		position = rewind_positions[record_count]
-		print(record_count)
 		record_count -= 1
 		if record_count == 0:
-			print("rewind_ended")
-			rewind = false
+			rewind("stop")
 			record_count = 0
 		return
 	
 	if is_on_floor():
+		ground_positions.append(position)
+		if ground_positions.size() > 10:
+			ground_positions.reverse()
+			ground_positions.resize(10)
+			ground_positions.reverse()
 		air_jumps = max_air_jumps
 		air_dashes = max_air_dashes
 		was_on_floor = true
-		recording = false
-		rewind_positions = []
+		
+		if get_floor_angle() == 0:
+			recording = false
+			rewind_positions = []
 	velocity = calculate_velocity()
 	$Camera2D.offset = $Camera2D.offset.lerp(Vector2(velocity.x / 6, 0), delta * 1)
 	velocity * delta
 	move_and_slide()
+
+
+func rewind(x = "start"):
+	if x == "start":
+		rewinding = true
+		recording = false
+		$CanvasLayer.visible = true
+		record_count = rewind_positions.size() - 1
+		$SpriteCanvasLayer/SprRewind.visible = true
+	
+	if x == "stop":
+		rewinding = false
+		recording = false
+		$CanvasLayer.visible = false
+		if get_floor_angle() == 0: rewind_positions = []
+		velocity = Vector2.ZERO
+		$SpriteCanvasLayer/SprRewind.visible = false
 
 
 func calculate_velocity():
@@ -86,11 +120,11 @@ func calculate_velocity():
 		if Input.is_action_pressed("ui_right"): x = 1
 		if Input.is_action_pressed("ui_left"): x = -1
 		
-		if is_on_floor():
+		if is_on_floor() and x != 0:
 			velocity.y = 0
 			velocity.x = x * 500
 			dash()
-		elif air_dashes > 0:
+		elif air_dashes > 0 and x != 0:
 			air_dashes -= 1
 			velocity.y = 0
 			velocity.x = x * 500
@@ -107,7 +141,7 @@ func dash():
 
 
 func set_camera_limits(x = [0, 0, 0, 0]):
-	death_limit = x[3]
+	death_limit = x[3] + 160
 	$Camera2D.limit_left = x[0]
 	$Camera2D.limit_top = x[1]
 	$Camera2D.limit_right = x[2]
@@ -118,3 +152,7 @@ func _on_dash_duration_timeout(): dash_active = false
 
 
 func _on_dash_cooldown_timeout(): dash_off_cooldown = true
+
+
+func _on_timer_timeout():
+	$SpriteCanvasLayer/SprPlay.visible = false

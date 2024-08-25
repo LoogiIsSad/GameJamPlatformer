@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj31x2e0y2ax"
-path="res://.godot/imported/rift_shard.png-dc5c020c63b12e02971eee0c05bc0519.ctex"
+uid="uid://ctjbayno2sbae"
+path="res://.godot/imported/broken.png-671747f4f653fdd4e90bad708ac905ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://rift_shard.png"
-dest_files=["res://.godot/imported/rift_shard.png-dc5c020c63b12e02971eee0c05bc0519.ctex"]
+source_file="res://scenes/levels/broken/broken.png"
+dest_files=["res://.godot/imported/broken.png-671747f4f653fdd4e90bad708ac905ef.ctex"]
 
 [params]
 

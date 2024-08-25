@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://dppcqtijrrh8u"]
+
+[ext_resource type="Script" path="res://scenes/area_label/area_label.gd" id="1_8qvxd"]
+
+[sub_resource type="Gradient" id="Gradient_5qol2"]
+offsets = PackedFloat32Array(0.285714, 1)
+colors = PackedColorArray(0, 0, 0, 0.439216, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_6osfk"]
+gradient = SubResource("Gradient_5qol2")
+fill = 1
+fill_from = Vector2(0, 0.486239)
+fill_to = Vector2(0.504587, 0.513761)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lqm52"]
+font_size = 20
+
+[node name="AreaLabel" type="CanvasLayer"]
+script = ExtResource("1_8qvxd")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 1.0
+offset_top = 70.0
+offset_right = 619.0
+offset_bottom = 143.0
+texture = SubResource("GradientTexture2D_6osfk")
+
+[node name="Label" type="Label" parent="."]
+modulate = Color(1, 1, 1, 0)
+offset_left = 19.0
+offset_top = 91.0
+offset_right = 189.0
+offset_bottom = 119.0
+text = "Fragmented Time"
+label_settings = SubResource("LabelSettings_lqm52")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

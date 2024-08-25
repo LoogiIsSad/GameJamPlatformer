@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://dr8da5xfp3540"]
+
+[ext_resource type="Shader" path="res://assets/shaders/rewind.gdshader" id="1_6n3mt"]
+[ext_resource type="Script" path="res://scenes/out_of_time/out_of_time.gd" id="1_ubs35"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cydqe"]
+shader = ExtResource("1_6n3mt")
+shader_parameter/resolution = Vector2(320, 180)
+shader_parameter/scan_line_amount = 1.0
+shader_parameter/warp_amount = 0.1
+shader_parameter/noise_amount = 0.3
+shader_parameter/interference_amount = 0.537
+shader_parameter/grille_amount = 0.1
+shader_parameter/grille_size = 1.0
+shader_parameter/vignette_amount = 0.038
+shader_parameter/vignette_intensity = 0.4
+shader_parameter/aberation_amount = 0.5
+shader_parameter/roll_line_amount = 0.3
+shader_parameter/roll_speed = 1.0
+shader_parameter/scan_line_strength = -8.0
+shader_parameter/pixel_strength = -2.0
+
+[node name="OutOfTime" type="CanvasLayer"]
+script = ExtResource("1_ubs35")
+
+[node name="Shader" type="CanvasModulate" parent="."]
+color = Color(1, 1, 1, 0)
+
+[node name="ColorRect" type="ColorRect" parent="Shader"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -767.0
+offset_top = -747.0
+offset_right = 1552.0
+offset_bottom = 1455.0
+
+[node name="Shader" type="ColorRect" parent="Shader"]
+material = SubResource("ShaderMaterial_cydqe")
+offset_left = -4.0
+offset_top = -8.0
+offset_right = 868.0
+offset_bottom = 652.0
