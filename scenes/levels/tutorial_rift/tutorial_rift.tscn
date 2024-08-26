@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=4 uid="uid://boin6m6hw1kjw"]
+[gd_scene load_steps=12 format=4 uid="uid://boin6m6hw1kjw"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_7d7xr"]
 [ext_resource type="TileSet" uid="uid://c0j8ccegprer3" path="res://assets/tile_sets/tutorial.tres" id="2_fp5vm"]
@@ -6,6 +6,9 @@
 [ext_resource type="PackedScene" uid="uid://dppcqtijrrh8u" path="res://scenes/area_label/area_label.tscn" id="4_e0kb7"]
 [ext_resource type="PackedScene" uid="uid://bk2px1jpw5lap" path="res://scenes/rift/Rift.tscn" id="5_dcuxi"]
 [ext_resource type="PackedScene" uid="uid://dog5tamgnmy2x" path="res://scenes/rift_shard/rift_shard.tscn" id="6_pvcey"]
+[ext_resource type="Texture2D" uid="uid://cgidxmtc076qv" path="res://wasd.png" id="7_croay"]
+[ext_resource type="Texture2D" uid="uid://cry8ytwjgc1mq" path="res://z_key.png" id="8_pupka"]
+[ext_resource type="Texture2D" uid="uid://bp6bwpxob2ulv" path="res://x_key.png" id="9_g4fev"]
 
 [sub_resource type="Gradient" id="Gradient_lxwlv"]
 offsets = PackedFloat32Array(0, 0.435065, 0.805195)
@@ -26,10 +29,10 @@ time_limit = 0.0
 scroll_scale = Vector2(0.3, 0.3)
 
 [node name="TextureRect" type="TextureRect" parent="Parallax2D"]
-offset_left = -577.0
-offset_top = -1960.0
-offset_right = 3838.0
-offset_bottom = 1544.0
+offset_left = -570.0
+offset_top = -1957.0
+offset_right = 3845.0
+offset_bottom = 1547.0
 texture = SubResource("GradientTexture2D_2on01")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
@@ -37,7 +40,7 @@ tile_map_data = PackedByteArray("AAD5/ycAAAABAAAAAAD6/ycAAAABAAAAAAD7/ycAAAABAAA
 tile_set = ExtResource("2_fp5vm")
 
 [node name="Rift" parent="." instance=ExtResource("5_dcuxi")]
-position = Vector2(2361, 331)
+position = Vector2(2326, 372)
 
 [node name="Player" parent="." instance=ExtResource("3_e71eb")]
 position = Vector2(-21, 576)
@@ -56,3 +59,27 @@ position = Vector2(3345, 4)
 
 [node name="RiftShard4" parent="." instance=ExtResource("6_pvcey")]
 position = Vector2(2778, 92)
+
+[node name="Wasd" type="Sprite2D" parent="."]
+position = Vector2(103, 545)
+texture = ExtResource("7_croay")
+
+[node name="ZKey" type="Sprite2D" parent="."]
+position = Vector2(1019, 540)
+texture = ExtResource("8_pupka")
+
+[node name="ZKey2" type="Sprite2D" parent="."]
+position = Vector2(1092, 432)
+texture = ExtResource("8_pupka")
+
+[node name="ZKey3" type="Sprite2D" parent="."]
+position = Vector2(1451, 408)
+texture = ExtResource("8_pupka")
+
+[node name="XKey" type="Sprite2D" parent="."]
+position = Vector2(1706, 402)
+texture = ExtResource("9_g4fev")
+
+[node name="ZKey4" type="Sprite2D" parent="."]
+position = Vector2(1884, 405)
+texture = ExtResource("8_pupka")

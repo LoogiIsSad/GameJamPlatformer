@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1j5o6pwc4y62"
-path="res://.godot/imported/siege.png-42c97ccdcd335d359ceb0c448f3d1c08.ctex"
+path="res://.godot/imported/siege.png-cda2934da357659ab763ba356aff5caa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://siege.png"
-dest_files=["res://.godot/imported/siege.png-42c97ccdcd335d359ceb0c448f3d1c08.ctex"]
+source_file="res://scenes/levels/siege/siege.png"
+dest_files=["res://.godot/imported/siege.png-cda2934da357659ab763ba356aff5caa.ctex"]
 
 [params]
 

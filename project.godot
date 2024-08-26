@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="RockGame"
-run/main_scene="res://scenes/surface/Surface.tscn"
+run/main_scene="res://scenes/levels/tutorial_rift/tutorial_rift.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 boot_splash/show_image=false
 config/icon="res://icon.svg"
@@ -42,5 +42,6 @@ dash={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

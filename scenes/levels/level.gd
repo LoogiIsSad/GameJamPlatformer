@@ -49,6 +49,10 @@ func _on_effect_timer_timeout():
 
 
 func _on_timer_timeout():
+	if Global.finished:
+		get_tree().change_scene_to_file("res://scenes/levels/new_beginning/new_beginning.tscn")
+		return
+	
 	get_tree().change_scene_to_file("res://scenes/surface/Surface.tscn")
 
 
@@ -68,8 +72,12 @@ func on_rift_shard_collected():
 func check_rift_shards():
 	if rift_shards_collected < rift_shards_total: return
 	
+	activate()
 	$Rift.active = true
 
+
+func activate():
+	$Rift.active = true
 
 func on_player_entered_rift():
 	timer.stop()

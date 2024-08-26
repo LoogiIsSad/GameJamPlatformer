@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://7vej3q77d2br"]
+
+[ext_resource type="Texture2D" uid="uid://gm711ibfcwk7" path="res://scenes/hourglass/hourglass.png" id="1_60tvj"]
+[ext_resource type="PackedScene" uid="uid://qvtmi6uq4dly" path="res://scenes/rift/enter_rift/enter_rift.tscn" id="4_ipsfq"]
+
+[sub_resource type="GDScript" id="GDScript_miybf"]
+script/source = "extends Node2D
+
+signal player_entered_rift
+@export var next_scene = \"\"
+@export var active = false
+
+func _ready():
+	set_status()
+	$EnterRift.speed = -$EnterRift.speed
+	$EnterRift.current_speed = -$EnterRift.current_speed
+
+
+func set_status():
+	$Area2D.monitoring = active
+	$Pngegg.visible = active
+
+
+func _process(delta):
+	$Pngegg.rotation += 0.3 * delta
+	set_status()
+
+
+func _on_area_2d_area_entered(area):
+	$EnterRift.start_cutscene()
+	var player = area.get_parent()
+	player.get_node(\"CanvasLayer\").visible = true
+	emit_signal(\"player_entered_rift\")
+	var tween = create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(player, \"position\", self.position, 2.5).set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_EXPO)
+	tween.tween_property(player, \"modulate:a\", 0.0, 2.5)
+
+
+func _on_enter_rift_cutscene_end():
+	Global.finished = true
+	print(get_tree().change_scene_to_file(next_scene))
+"
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_u5to0"]
+radius = 79.0063
+
+[node name="Hourglass" type="Node2D"]
+script = SubResource("GDScript_miybf")
+next_scene = "res://scenes/levels/new_beginning/new_beginning.tscn"
+
+[node name="Pngegg" type="Sprite2D" parent="."]
+texture = ExtResource("1_60tvj")
+
+[node name="Area2D" type="Area2D" parent="."]
+monitoring = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-1, 1)
+shape = SubResource("CircleShape2D_u5to0")
+
+[node name="EnterRift" parent="." instance=ExtResource("4_ipsfq")]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="cutscene_end" from="EnterRift" to="." method="_on_enter_rift_cutscene_end"]

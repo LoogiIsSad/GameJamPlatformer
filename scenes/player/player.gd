@@ -15,6 +15,7 @@ var rewind_positions = []
 var ground_positions = []
 var death_limit = 800
 var spawning = true
+var coyote_time = false
 
 func _ready():
 	$CanvasLayer.visible = true
@@ -39,11 +40,15 @@ func _physics_process(delta):
 		recording = true
 		rewind_positions = ground_positions
 		was_on_floor = false
+		$CoyoteTimer.stop()
+		$CoyoteTimer.wait_time = 0.15
+		$CoyoteTimer.start()
+		coyote_time = true
 	if recording:
 		rewind_positions.append(position)
 	
 	if position.y > death_limit and !rewinding: rewind("start")
-		
+	
 	
 	if rewinding and !rewind_positions.is_empty():
 		position = rewind_positions[record_count]
@@ -66,12 +71,30 @@ func _physics_process(delta):
 		if get_floor_angle() == 0:
 			recording = false
 			rewind_positions = []
+	
 	velocity = calculate_velocity()
+	play_animation()
 	$Camera2D.offset = $Camera2D.offset.lerp(Vector2(velocity.x / 6, 0), delta * 1)
 	velocity * delta
 	move_and_slide()
 
 
+func play_animation():
+	if !is_on_floor():
+		$AnimationPlayer.stop()
+		$Sprite2D.frame = 5
+		return
+	
+	if Input.is_action_pressed("ui_right"):
+		$AnimationPlayer.play("run")
+		$Sprite2D.scale.x = 1
+	elif Input.is_action_pressed("ui_left"):
+		$AnimationPlayer.play("run")
+		$Sprite2D.scale.x = -1
+	else:
+		$AnimationPlayer.stop()
+		$Sprite2D.frame = 0
+	
 func rewind(x = "start"):
 	if x == "start":
 		rewinding = true
@@ -109,7 +132,7 @@ func calculate_velocity():
 	elif velocity.x < -speed_limit and is_on_floor(): velocity.x += speed * 2
 	
 	if Input.is_action_just_pressed("jump"):
-		if is_on_floor():
+		if is_on_floor() or coyote_time == true:
 			velocity.y = -700
 		elif air_jumps > 0:
 			air_jumps -= 1
@@ -156,3 +179,7 @@ func _on_dash_cooldown_timeout(): dash_off_cooldown = true
 
 func _on_timer_timeout():
 	$SpriteCanvasLayer/SprPlay.visible = false
+
+
+func _on_coyote_timer_timeout():
+	coyote_time = false
