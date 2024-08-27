@@ -107,6 +107,6 @@ volume_db = -5.0
 
 [node name="AudRewind" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_y77i6")
-volume_db = -5.0
+volume_db = -15.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

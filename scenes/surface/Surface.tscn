@@ -32,9 +32,9 @@ tile_set = ExtResource("5_e8u7b")
 
 [node name="Timer" type="Timer" parent="."]
 
-[node name="Credits" parent="." instance=ExtResource("7_p87jc")]
-
 [node name="Rift" parent="." instance=ExtResource("3_obnjm")]
 position = Vector2(338, 336)
 next_scene = "res://scenes/levels/fragments/fragments.tscn"
 active = true
+
+[node name="Credits" parent="." instance=ExtResource("7_p87jc")]

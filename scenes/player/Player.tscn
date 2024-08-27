@@ -202,7 +202,7 @@ volume_db = -5.0
 
 [node name="AudRewind" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("12_1bapc")
-volume_db = -5.0
+volume_db = -15.0
 
 [node name="LandParticles" type="CPUParticles2D" parent="."]
 position = Vector2(0, 21)

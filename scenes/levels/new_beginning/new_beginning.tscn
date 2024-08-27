@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://diitsfvi1b1u"]
+[gd_scene load_steps=8 format=4 uid="uid://diitsfvi1b1u"]
 
 [ext_resource type="Script" path="res://scenes/surface/surface.gd" id="1_ckp6u"]
 [ext_resource type="PackedScene" uid="uid://dppcqtijrrh8u" path="res://scenes/area_label/area_label.tscn" id="2_s7weq"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bk2px1jpw5lap" path="res://scenes/rift/Rift.tscn" id="4_k30n6"]
 [ext_resource type="PackedScene" uid="uid://d2tbp8gvngbpo" path="res://scenes/player/Player.tscn" id="5_5prqx"]
 [ext_resource type="TileSet" uid="uid://by1omyk3avvg0" path="res://assets/tile_sets/general.tres" id="6_mgkgv"]
+[ext_resource type="PackedScene" uid="uid://c3c7t7lc55q0v" path="res://scenes/credits/credits.tscn" id="7_afs2l"]
 
 [node name="Surface" type="Node2D"]
 position = Vector2(110, 8)
@@ -35,5 +36,7 @@ tile_map_data = PackedByteArray("AAAZACgAAAACAAcAAAAZACcAAAACAAcAAAAZACYAAAACAAc
 tile_set = ExtResource("6_mgkgv")
 
 [node name="Timer" type="Timer" parent="."]
+
+[node name="Credits" parent="." instance=ExtResource("7_afs2l")]
 
 [connection signal="player_entered_rift" from="Rift" to="." method="_on_rift_player_entered_rift"]

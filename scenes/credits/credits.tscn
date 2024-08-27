@@ -47,11 +47,6 @@ layout_mode = 2
 text = "Woosh - Metal tea strainer 1 by Sadiquecat -- https://freesound.org/s/742832/ -- License: Creative Commons 0"
 fit_content = true
 
-[node name="Label3" type="RichTextLabel" parent="Control/HBoxContainer/VBoxContainer"]
-layout_mode = 2
-text = "Swoosh04 by falcospizaetus -- https://freesound.org/s/489997/ -- License: Creative Commons 0"
-fit_content = true
-
 [node name="Label4" type="RichTextLabel" parent="Control/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Swoosh04 by falcospizaetus -- https://freesound.org/s/489997/ -- License: Creative Commons 0"
