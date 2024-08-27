@@ -16,12 +16,18 @@ var ground_positions = []
 var death_limit = 800
 var spawning = true
 var coyote_time = false
+var prev_velocity = Vector2.ZERO
+
+var rng = RandomNumberGenerator.new()
 
 func _ready():
 	$CanvasLayer.visible = true
 	var tween = create_tween()
+	$AudRewind.play()
 	tween.tween_property($CanvasLayer/CanvasModulate, "color:a", 0.0, 2.0)
 	tween.tween_callback(func():
+		$AudClick.play()
+		$AudRewind.stop()
 		spawning = false
 		$CanvasLayer.visible = false
 		$CanvasLayer/ColorRect.visible = false
@@ -39,9 +45,8 @@ func _physics_process(delta):
 	if was_on_floor and !rewinding and (!is_on_floor() or get_floor_angle() != 0):
 		recording = true
 		rewind_positions = ground_positions
-		was_on_floor = false
 		$CoyoteTimer.stop()
-		$CoyoteTimer.wait_time = 0.15
+		$CoyoteTimer.wait_time = 0.1
 		$CoyoteTimer.start()
 		coyote_time = true
 	if recording:
@@ -66,13 +71,26 @@ func _physics_process(delta):
 			ground_positions.reverse()
 		air_jumps = max_air_jumps
 		air_dashes = max_air_dashes
-		was_on_floor = true
 		
 		if get_floor_angle() == 0:
 			recording = false
 			rewind_positions = []
 	
 	velocity = calculate_velocity()
+	
+	if !was_on_floor and is_on_floor():
+		$LandParticles.emitting = true
+		var scale = prev_velocity.y / 1000
+		if scale > 0.7: scale = 0.7
+		$AudLand.pitch_scale = 0.5 + scale
+		$AudLand.play()
+	
+	if is_on_floor():
+		was_on_floor = true
+	else:
+		was_on_floor = false
+	
+	prev_velocity = velocity
 	play_animation()
 	$Camera2D.offset = $Camera2D.offset.lerp(Vector2(velocity.x / 6, 0), delta * 1)
 	velocity * delta
@@ -95,8 +113,12 @@ func play_animation():
 		$AnimationPlayer.stop()
 		$Sprite2D.frame = 0
 	
+
+
 func rewind(x = "start"):
 	if x == "start":
+		$AudClick.play()
+		$AudRewind.play()
 		rewinding = true
 		recording = false
 		$CanvasLayer.visible = true
@@ -104,6 +126,8 @@ func rewind(x = "start"):
 		$SpriteCanvasLayer/SprRewind.visible = true
 	
 	if x == "stop":
+		$AudClick.play()
+		$AudRewind.stop()
 		rewinding = false
 		recording = false
 		$CanvasLayer.visible = false
@@ -116,6 +140,11 @@ func calculate_velocity():
 	if dash_active:
 		return velocity
 	
+	rng.randomize()
+	var audio_pitch = rng.randf_range(0.8, 1.0)
+	$AudDash.pitch_scale = audio_pitch
+	$AudJump.pitch_scale = audio_pitch
+	$AudDoubleJump.pitch_scale = audio_pitch
 	if !is_on_floor():
 		velocity.y += Global.gravity
 	else:
@@ -134,7 +163,9 @@ func calculate_velocity():
 	if Input.is_action_just_pressed("jump"):
 		if is_on_floor() or coyote_time == true:
 			velocity.y = -700
+			$AudJump.play()
 		elif air_jumps > 0:
+			$AudDoubleJump.play()
 			air_jumps -= 1
 			velocity.y = -500
 	
@@ -144,10 +175,12 @@ func calculate_velocity():
 		if Input.is_action_pressed("ui_left"): x = -1
 		
 		if is_on_floor() and x != 0:
+			$AudDash.play()
 			velocity.y = 0
 			velocity.x = x * 500
 			dash()
 		elif air_dashes > 0 and x != 0:
+			$AudDash.play()
 			air_dashes -= 1
 			velocity.y = 0
 			velocity.x = x * 500

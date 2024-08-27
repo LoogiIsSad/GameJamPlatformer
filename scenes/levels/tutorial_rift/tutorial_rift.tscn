@@ -40,7 +40,7 @@ tile_map_data = PackedByteArray("AAD5/ycAAAABAAAAAAD6/ycAAAABAAAAAAD7/ycAAAABAAA
 tile_set = ExtResource("2_fp5vm")
 
 [node name="Rift" parent="." instance=ExtResource("5_dcuxi")]
-position = Vector2(2326, 372)
+position = Vector2(2330, 348)
 
 [node name="Player" parent="." instance=ExtResource("3_e71eb")]
 position = Vector2(-21, 576)

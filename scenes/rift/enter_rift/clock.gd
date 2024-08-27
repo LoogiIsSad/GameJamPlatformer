@@ -17,8 +17,11 @@ func _process(delta):
 
 func start_cutscene():
 	$AnimationPlayer.play("rift")
+	$AudClick.play()
+	$AudRewind.play()
 	cutscene_running = true
 
 
 func _on_animation_player_animation_finished(anim_name):
+	$AudClick.play()
 	emit_signal("cutscene_end")

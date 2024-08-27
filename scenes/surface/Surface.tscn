@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://c6ybelmam5n62"]
+[gd_scene load_steps=8 format=4 uid="uid://c6ybelmam5n62"]
 
 [ext_resource type="Script" path="res://scenes/surface/surface.gd" id="1_bku6s"]
 [ext_resource type="Texture2D" uid="uid://ytqcnxima25t" path="res://scenes/surface/breath-taking-moon-and-stars-jezvodmy8ht0392c.webp" id="1_euymk"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dppcqtijrrh8u" path="res://scenes/area_label/area_label.tscn" id="2_33xtl"]
 [ext_resource type="PackedScene" uid="uid://bk2px1jpw5lap" path="res://scenes/rift/Rift.tscn" id="3_obnjm"]
 [ext_resource type="TileSet" uid="uid://dqxpts700xk66" path="res://assets/tile_sets/space.tres" id="5_e8u7b"]
+[ext_resource type="PackedScene" uid="uid://c3c7t7lc55q0v" path="res://scenes/credits/credits.tscn" id="7_p87jc"]
 
 [node name="Surface" type="Node2D"]
 position = Vector2(110, 8)
@@ -22,11 +23,6 @@ position = Vector2(332, 319)
 scale = Vector2(1.26633, 1.26633)
 texture = ExtResource("1_euymk")
 
-[node name="Rift" parent="." instance=ExtResource("3_obnjm")]
-position = Vector2(327, 405)
-next_scene = "res://scenes/levels/fragments/fragments.tscn"
-active = true
-
 [node name="Player" parent="." instance=ExtResource("2_6glsi")]
 position = Vector2(510, 306)
 
@@ -36,4 +32,9 @@ tile_set = ExtResource("5_e8u7b")
 
 [node name="Timer" type="Timer" parent="."]
 
-[connection signal="player_entered_rift" from="Rift" to="." method="_on_rift_player_entered_rift"]
+[node name="Credits" parent="." instance=ExtResource("7_p87jc")]
+
+[node name="Rift" parent="." instance=ExtResource("3_obnjm")]
+position = Vector2(338, 336)
+next_scene = "res://scenes/levels/fragments/fragments.tscn"
+active = true

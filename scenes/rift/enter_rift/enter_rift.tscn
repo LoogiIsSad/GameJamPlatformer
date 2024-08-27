@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://qvtmi6uq4dly"]
+[gd_scene load_steps=8 format=3 uid="uid://qvtmi6uq4dly"]
 
 [ext_resource type="Texture2D" uid="uid://gwt0clgxd8y1" path="res://scenes/rift/enter_rift/clock_base.png" id="1_abiju"]
 [ext_resource type="Script" path="res://scenes/rift/enter_rift/clock.gd" id="1_j1aic"]
+[ext_resource type="AudioStream" uid="uid://b0wn7wa670pod" path="res://scenes/player/click.wav" id="3_21l7k"]
+[ext_resource type="AudioStream" uid="uid://detffedvvae4n" path="res://scenes/player/rewind.wav" id="4_y77i6"]
 
 [sub_resource type="Animation" id="Animation_88cnt"]
 length = 0.001
@@ -98,5 +100,13 @@ pivot_offset = Vector2(15, 10)
 libraries = {
 "": SubResource("AnimationLibrary_rw4ak")
 }
+
+[node name="AudClick" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_21l7k")
+volume_db = -5.0
+
+[node name="AudRewind" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_y77i6")
+volume_db = -5.0
 
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
