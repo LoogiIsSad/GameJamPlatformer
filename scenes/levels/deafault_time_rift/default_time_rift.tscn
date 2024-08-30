@@ -12,6 +12,7 @@
 script = ExtResource("1_pf56x")
 cam_limits = [-2000, -850, 1800, 900]
 time_limit = 50.0
+phrase = 1
 
 [node name="AreaLabel" parent="." instance=ExtResource("2_sqags")]
 text = "Time Rift"

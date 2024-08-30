@@ -1,0 +1,58 @@
+[gd_scene load_steps=10 format=3 uid="uid://dt28eo61f85l4"]
+
+[ext_resource type="AudioStream" uid="uid://bnmnb0r2b7s7m" path="res://scenes/music/ft_chords_1.wav" id="1_a4iii"]
+[ext_resource type="Script" path="res://scenes/music/music.gd" id="1_evfhi"]
+[ext_resource type="AudioStream" uid="uid://yug0awnn30dg" path="res://scenes/music/ft_chords_2.wav" id="2_pkqe4"]
+[ext_resource type="AudioStream" uid="uid://c2jh1vf6odstt" path="res://scenes/music/ft_bassline_1.wav" id="3_xahmb"]
+[ext_resource type="AudioStream" uid="uid://bj5fah8s3mtrd" path="res://scenes/music/ft_bassline_2.wav" id="4_kwi0j"]
+[ext_resource type="AudioStream" uid="uid://opm61vmqp50c" path="res://scenes/music/ft_percussion.wav" id="5_b6gpg"]
+[ext_resource type="AudioStream" uid="uid://7et7x7k25pcr" path="res://scenes/music/ft_lead_1.wav" id="6_lmu1o"]
+[ext_resource type="AudioStream" uid="uid://5ojtvcx2wh4r" path="res://scenes/music/ft_lead_2.wav" id="7_nopbc"]
+[ext_resource type="AudioStream" uid="uid://bveu02vfymntk" path="res://scenes/music/ft_low_time.wav" id="8_snuff"]
+
+[node name="Music" type="Node2D"]
+script = ExtResource("1_evfhi")
+
+[node name="Chords1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_a4iii")
+
+[node name="Chords1a" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_a4iii")
+
+[node name="Chords2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pkqe4")
+
+[node name="Chords2a" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_pkqe4")
+
+[node name="Bass1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_xahmb")
+
+[node name="Bass2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_kwi0j")
+
+[node name="Drums" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_b6gpg")
+
+[node name="Lead1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lmu1o")
+
+[node name="Lead2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_nopbc")
+
+[node name="OutOfTime" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("8_snuff")
+
+[node name="BarTimer" type="Timer" parent="."]
+wait_time = 4.0
+
+[node name="PhraseTimer" type="Timer" parent="."]
+wait_time = 16.0
+
+[node name="DrumTimer" type="Timer" parent="."]
+wait_time = 8.0
+one_shot = true
+
+[connection signal="timeout" from="BarTimer" to="." method="_on_bar_timer_timeout"]
+[connection signal="timeout" from="PhraseTimer" to="." method="_on_phrase_timer_timeout"]
+[connection signal="timeout" from="DrumTimer" to="." method="_on_drum_timer_timeout"]

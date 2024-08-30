@@ -12,6 +12,7 @@
 script = ExtResource("1_nd4ev")
 cam_limits = [-2235, -1426, 3635, 690]
 time_limit = 140.0
+phrase = 4
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.3, 0.3)

@@ -3,6 +3,7 @@ class_name Level
 
 @export var cam_limits = [0, 0, 0, 0] # left, top, right, bottom
 @export var time_limit = 1.0
+@export var phrase = 0
 var rift_shards_total = 0
 var rift_shards_collected = 0
 var rift_label
@@ -14,6 +15,8 @@ func _init():
 
 
 func _ready():
+	Global.phrase = phrase
+	Global.low_time = false
 	#$Player.paused = true
 	$Player.set_camera_limits(cam_limits)
 	start_timer()
@@ -44,6 +47,7 @@ func start_timer():
 
 func _on_effect_timer_timeout():
 	var x = load("res://scenes/out_of_time/out_of_time.tscn").instantiate()
+	Global.low_time = true
 	add_child(x)
 	x.start()
 

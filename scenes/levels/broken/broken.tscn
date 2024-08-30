@@ -12,6 +12,7 @@
 script = ExtResource("1_kywim")
 cam_limits = [-2590, -1530, 2630, 270]
 time_limit = 150.0
+phrase = 2
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.3, 0.3)

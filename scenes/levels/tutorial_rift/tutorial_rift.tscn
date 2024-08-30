@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://boin6m6hw1kjw"]
+[gd_scene load_steps=13 format=4 uid="uid://boin6m6hw1kjw"]
 
 [ext_resource type="Script" path="res://scenes/levels/level.gd" id="1_7d7xr"]
 [ext_resource type="TileSet" uid="uid://c0j8ccegprer3" path="res://assets/tile_sets/tutorial.tres" id="2_fp5vm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://cgidxmtc076qv" path="res://wasd.png" id="7_croay"]
 [ext_resource type="Texture2D" uid="uid://cry8ytwjgc1mq" path="res://z_key.png" id="8_pupka"]
 [ext_resource type="Texture2D" uid="uid://bp6bwpxob2ulv" path="res://x_key.png" id="9_g4fev"]
+[ext_resource type="PackedScene" uid="uid://dt28eo61f85l4" path="res://scenes/music/music.tscn" id="10_cpvsn"]
 
 [sub_resource type="Gradient" id="Gradient_lxwlv"]
 offsets = PackedFloat32Array(0, 0.435065, 0.805195)
@@ -83,3 +84,5 @@ texture = ExtResource("8_pupka")
 
 [node name="Rift" parent="." instance=ExtResource("5_dcuxi")]
 position = Vector2(2187, 317)
+
+[node name="Music" parent="." instance=ExtResource("10_cpvsn")]

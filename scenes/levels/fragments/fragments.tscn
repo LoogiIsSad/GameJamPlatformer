@@ -13,6 +13,7 @@
 script = ExtResource("1_w3vqy")
 cam_limits = [-2160, -1300, 2180, 1100]
 time_limit = 120.0
+phrase = 1
 
 [node name="AreaLabel" parent="." instance=ExtResource("2_s4ir6")]
 text = "Fragments"
